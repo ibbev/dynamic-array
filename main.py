@@ -1,10 +1,14 @@
-ljst = [0,6,5,3,4,6]
-lenh = len(ljst) // 2
+import random
+
+lijst = [random.randint(0,1000) for _ in range(100)]
+
 
 def merge_sort(lijst):
 	i = 0
 	links = []
 	rechts = []
+	lenh = len(lijst) // 2 
+
 	if len(lijst) < 2:
 		return lijst
 	while i < len(lijst):
@@ -13,16 +17,18 @@ def merge_sort(lijst):
 		else:
 			rechts.append(lijst[i])
 		i += 1	
+
 	links = merge_sort(links)
 	rechts = merge_sort(rechts)
+
 	resultaat = []
-	while rechts == [] and links == []:
-		if links[1] < rechts[1]:
-			resultaat.append(links.pop[1])
+
+	while len(rechts) > 0 and len(links) > 0:
+		if links[0] < rechts[0]:
+			resultaat.append(links.pop(0))
 		else:
-			resultaat.append(rechts.pop[1])
-	resultaat.append(links)
-	resultaat.append(rechts)
+			resultaat.append(rechts.pop(0))
+	resultaat.extend(links)
+	resultaat.extend(rechts)
 	return resultaat
-merge_sort(ljst)
-print(resultaat)
+print(merge_sort(lijst))
